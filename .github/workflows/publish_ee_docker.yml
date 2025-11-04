@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_REPO: ownerar/billera-chatwoot
+  DOCKER_REPO: etan1997/billera-chatwoot
 
 jobs:
   build:
