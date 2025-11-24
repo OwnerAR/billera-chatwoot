@@ -58,9 +58,10 @@ export default {
         email: {
           required,
           email,
-          businessEmailValidator(value) {
-            return CompanyEmailValidator.isCompanyEmail(value);
-          },
+          // businessEmailValidator disabled to allow personal emails (gmail, outlook, etc)
+          // businessEmailValidator(value) {
+          //   return CompanyEmailValidator.isCompanyEmail(value);
+          // },
         },
         password: {
           required,

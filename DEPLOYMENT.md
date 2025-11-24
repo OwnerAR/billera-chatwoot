@@ -238,6 +238,36 @@ docker stats
 docker-compose -f docker-compose.production.yaml restart rails
 ```
 
+## Akses Database
+
+Untuk akses database PostgreSQL di production Docker, lihat panduan lengkap di [ACCESS_DATABASE.md](./ACCESS_DATABASE.md).
+
+**Quick access:**
+```bash
+# Via Rails Console (Recommended)
+docker-compose -f docker-compose.production.yaml exec rails bundle exec rails console
+
+# Via psql langsung
+docker-compose -f docker-compose.production.yaml exec postgres psql -U postgres -d chatwoot
+```
+
+## Mengubah Installation Config
+
+Untuk mengubah installation config (seperti `BLOCKED_EMAIL_DOMAINS`) di production Docker, lihat panduan lengkap di [MANAGE_INSTALLATION_CONFIG.md](./MANAGE_INSTALLATION_CONFIG.md).
+
+**Quick reference:**
+```bash
+# Via Rails Console
+docker-compose -f docker-compose.production.yaml exec rails bundle exec rails console
+
+# Di console:
+config = InstallationConfig.find_or_initialize_by(name: 'BLOCKED_EMAIL_DOMAINS')
+config.value = "gmail.com\noutlook.com"
+config.locked = false
+config.save!
+GlobalConfig.clear_cache
+```
+
 ## Troubleshooting
 
 ### Error: "pull access denied for billera-chatwoot"
